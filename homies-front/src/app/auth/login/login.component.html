@@ -1,0 +1,106 @@
+<div class="login-page">
+    <div class="container-login">
+        <div class="brand">
+            <img class="brand-img" src="/assets/img/login-page/logo.png" alt="#">
+        </div>
+        <div class="login-section" style="display: flex">
+            <div class="fork">
+                <img src="/assets/img/login-page/fork.png" alt="#">
+            </div>
+            <form class="login-form" style="display: flex;flex-direction: column;justify-content: center;align-items: center" *ngIf="!isRegister" [formGroup]="loginForm">
+                <div class="login-form__header">
+                    <h3>Chào mừng bạn</h3>
+                    <h3> đến với smat-meal</h3>
+                </div>
+                <div class="login-form__link-sign-up" style="display: flex">
+                    <p>Lần đầu ghé thăm?</p>
+                    <a class="login-form__link-sign-up_link" (click)="isRegister = !isRegister">Hãy tạo một tài khoản mới</a>
+                </div>
+                <div class="login-form__username">
+                    <label for="username">Email</label>
+                    <input class="input-green" type="text" id="username" [formControlName]="'username'"
+                           name="user_name"
+                           required
+                           autofocus
+                    >
+                    <span *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">
+                                   Please provide a valid username
+                                </span>
+                </div>
+                <div class="login-form__password">
+                    <label for="password-login">Password</label>
+
+                    <input type="password" id="password-login" class="input-green" [formControlName]="'passwords'"
+                           name="passwords"
+                           required>
+                    <span *ngIf="!loginForm.get('passwords').valid && loginForm.get('passwords').touched">
+                                  Password cannot be empty
+                                </span>
+                </div>
+                <div class="login-form__forgot-password">
+                    <p>Quên mật khẩu?</p>
+                </div>
+                <div class="login-form__btn-submit">
+                    <button class="btn-login" (click)="login()">Đăng nhập</button>
+                </div>
+                <div class="login-form__title-login-social" style="display: flex">
+                    <svg height="20" width="120">
+                        <g fill="none" stroke="#8CCB51">
+                            <path stroke-width="1" d="M5 15 l215 0" />
+                        </g>
+                        Sorry, your browser does not support inline SVG.
+                    </svg>
+                    Hoặc đăng nhập bằng
+                    <svg height="20" width="120">
+                        <g fill="none" stroke="#8CCB51">
+                            <path stroke-width="1" d="M5 15 l215 0" />
+                        </g>
+                        Sorry, your browser does not support inline SVG.
+                    </svg>
+                </div>
+                <div class="login-form__login-social" style="display: flex">
+                    <div class="login-form__login-social__facebook">
+                        <img src="/assets/img/login-page/fb-logo.png" alt="#" width="60px">
+                    </div>
+                    <div class="login-form__login-social__google">
+                        <img src="/assets/img/login-page/gg-logo.png" alt="#" width="60px">
+                    </div>
+                </div>
+            </form>
+
+
+<!--
+            <div class="sign-up-form" style="display: flex;flex-direction: column;justify-content: center;align-items: center" *ngIf="isRegister">
+                <div class="login-form__header">
+                    <h3>TẠO TÀI KHOẢN MỚI</h3>
+                </div>
+                <div class="login-form__username">
+                    <label for="username">Tên đăng nhập</label>
+                    <input class="input-green" type="text" id="username">
+                </div>
+                <div class="login-form__email">
+                    <label for="email">Email</label>
+                    <input class="input-green" type="text" id="email">
+                </div>
+                <div class="login-form__password">
+                    <label for="password-login__sign-up">Mật khẩu</label>
+                    <input class="input-green" type="password" id="password-login__sign-up">
+                </div>
+                <div class="login-form__password-retype">
+                    <label for="password-retype">Nhập lại mật khẩu</label>
+                    <input class="input-green" type="password" id="password-retype">
+                </div>
+                <div class="login-form__btn-submit">
+                    <button class="btn-login">Đăng ký</button>
+                </div>
+            </div>
+-->
+
+
+            <div class="knife">
+                <img src="/assets/img/login-page/knife.png" alt="#">
+            </div>
+        </div>
+    </div>
+</div>
+

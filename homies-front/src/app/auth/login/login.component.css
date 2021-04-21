@@ -1,0 +1,81 @@
+.login-page {
+
+}
+
+.login-page .container-login {
+    width: 955px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.brand-img {
+    width: 33vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    width: 60vw;
+    display: flex;
+    justify-content: center;
+    background-image: url("/assets/img/login-page/dish.png");
+    object-fit: fill;
+}
+
+.login-form__link-sign-up_link {
+    color: #359E09;
+}
+
+.login-form__username {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form__password {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-section {
+
+}
+
+.login-form {
+}
+
+.login-failed, .register-success{
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+    border: 2px solid black;
+    width: 65%;
+    background-color: red;
+}
+
+.login-failed-text, .register-success-text{
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+    color: aliceblue;
+}
+
+/*rgba(214, 245, 152, 0.5)*/
+
+.login-page {
+    background-image: url('/assets/img/login-page/bg-footer.png'), url('/assets/img/login-page/bg-f2.png');
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: auto 33vh;
+}
+
+.btn-login {
+    color: #fff;
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 22px;
+    background: #FBB531;
+    font-weight: 700;
+    border: none;
+    text-transform: uppercase;
+}
