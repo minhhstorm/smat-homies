@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -34,5 +36,5 @@ public class IngredientEntity {
     private int type;
 
     @ManyToMany(mappedBy = "ingredients")
-    private List<DishEntity> dishs = new ArrayList<>();
+    private Set<DishEntity> dishs = new HashSet<>();
 }

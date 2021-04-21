@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -31,5 +33,6 @@ public class DishEntity {
     @JoinTable(name = "ingredient_dish",
                     joinColumns = @JoinColumn(name = "ingredient_id")
                     , inverseJoinColumns = @JoinColumn(name = "dish_id"))
-    private List<IngredientEntity> ingredients = new ArrayList<>();
+    private Set<IngredientEntity> ingredients = new HashSet<>();
+
 }
