@@ -37,7 +37,7 @@ public class AdminController {
     }
 
     @PostMapping("/add-dish")
-    public ResponseEntity<String> addDiss(@Validated @RequestBody AddDishRequestDTO addDishRequestDTO) {
+    public ResponseEntity<String> addDish(@Validated @RequestBody AddDishRequestDTO addDishRequestDTO) {
         if (dishRepository.existsByName(addDishRequestDTO.getName())) {
             return new ResponseEntity<>("Món ăn đã tồn tại", HttpStatus.CONFLICT);
         }

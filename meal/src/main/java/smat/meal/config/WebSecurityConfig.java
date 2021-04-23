@@ -50,6 +50,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpS.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
+//    @Override
+//    protected void configure(HttpSecurity httpS) throws Exception {
+//        httpS.cors().and().csrf().disable()
+//                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+//                .authorizeRequests().antMatchers("/","/login","/signup").access("hasAnyRole('ROLE_ADMIN')").and()
+//                .authorizeRequests().antMatchers("/smat/**").access("hasAnyRole('ROLE_USER','ROLE_ADMIN')").and()
+//                //  .permitAll()
+//                .authorizeRequests().antMatchers("/admin/**")
+//                .permitAll()
+//                .anyRequest().authenticated();
+//        httpS.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+//    }
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {

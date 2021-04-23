@@ -70,6 +70,10 @@ public class AuthSmatController {
         } else {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Tên đăng nhập hoặc mật khẩu không đúng!!"));
         }
+        userEntity = userRepository.findByUsername(loginRequestDTO.getUsername());
+        if(!userEntity.get().isEnabled()) {
+            return  ResponseEntity.badRequest().body(new MessageResponse("Error: Tài khoản của bạn đang bị vô hiệu hóa!! Liên hệ với admin"));
+        }
         return authService.login(loginRequestDTO);
     }
 }
