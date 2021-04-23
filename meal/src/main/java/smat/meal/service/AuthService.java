@@ -60,8 +60,6 @@ public class AuthService {
         RoleEntity userRole = roleRepository.findByName(ERole.ROLE_USER)
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found"));
         roles.add(userRole);
-        roles.add(roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() -> new
-                RuntimeException("Error: Role is not found")));
         userEntity.setRoles(roles);
 
         userRepository.save(userEntity);
@@ -108,7 +106,6 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String authenticationToken = jwtProvider.generateToken(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        System.out.println(userDetails.toString());
 
         List<String> roles = userDetails.getAuthorities().stream()
                                 .map(GrantedAuthority::getAuthority)
