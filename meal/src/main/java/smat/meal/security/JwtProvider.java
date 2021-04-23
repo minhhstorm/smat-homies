@@ -37,7 +37,6 @@ public class JwtProvider {
 
 	public String generateToken(Authentication authentication) {
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-//		org.springframework.security.core.userdetails.User principal = (User) authentication.getPrincipal();
 		return Jwts.builder()
 				.setSubject(userDetails.getUsername())
 				.signWith(getPrivateKey())

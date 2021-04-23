@@ -8,7 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import smat.meal.dto.AddDishRequestDTO;
 import smat.meal.dto.AddIngredientRequestDTO;
-import smat.meal.entity.DishEntity;
+import smat.meal.entity.IngredientEntity;
 import smat.meal.repository.DishRepository;
 import smat.meal.repository.IngredientRepository;
 import smat.meal.service.AdminService;
@@ -45,10 +45,8 @@ public class AdminController {
         return new ResponseEntity<>("Thêm món ăn thành công", HttpStatus.CREATED);
     }
 
-//    @GetMapping("/get-dish")
-//    public ResponseEntity<List<DishEntity>> getDish() {
-//        System.out.println("afasfasf");
-//        return ResponseEntity.ok()
-//                .body(adminService.getDish());
-//    }
+    @GetMapping("/get-ingredient")
+    public ResponseEntity<List<IngredientEntity>> getAllIngredient() {
+        return new ResponseEntity<>(adminService.getAllIngredient(), HttpStatus.OK);
+    }
 }

@@ -60,6 +60,8 @@ public class AuthService {
         RoleEntity userRole = roleRepository.findByName(ERole.ROLE_USER)
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found"));
         roles.add(userRole);
+        roles.add(roleRepository.findByName(ERole.ROLE_ADMIN).orElseThrow(() -> new
+                RuntimeException("Error: Role is not found")));
         userEntity.setRoles(roles);
 
         userRepository.save(userEntity);
@@ -84,7 +86,7 @@ public class AuthService {
         return passwordEncoder.encode(password);
     }
 
-    public void verifyAccout(String token) {
+    public void verifyAccount(String token) {
         Optional<TokenEntity> tokenOptional = tokenRepository.findByToken(token);
         tokenOptional.orElseThrow(() -> new SmatException("Mã không hợp lệ"));
         fetchUserAndEnable(tokenOptional.get());
@@ -106,12 +108,14 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String authenticationToken = jwtProvider.generateToken(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+        System.out.println(userDetails.toString());
+
         List<String> roles = userDetails.getAuthorities().stream()
                                 .map(GrantedAuthority::getAuthority)
                                 .collect(Collectors.toList());
         return new JwtLoginResponseDTO(authenticationToken, userDetails.getId()
                                         , userDetails.getUsername()
-                                            , userDetails.getEmail()
-                                            , roles);
+                                        , userDetails.getEmail()
+                                        , roles);
     }
 }

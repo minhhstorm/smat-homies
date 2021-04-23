@@ -9,7 +9,6 @@ import smat.meal.entity.IngredientEntity;
 import smat.meal.repository.DishRepository;
 import smat.meal.repository.IngredientRepository;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -46,4 +45,7 @@ public class AdminService {
         dishRepository.save(dishEntity);
     }
 
+    public List<IngredientEntity> getAllIngredient() {
+        return ingredientRepository.findAll();
+    }
 }

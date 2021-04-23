@@ -46,7 +46,7 @@ public class AuthSmatController {
 
     @GetMapping("accountVerification/{token}")
     public ResponseEntity<String> verifyAccount(@PathVariable String token) {
-        authService.verifyAccout(token);
+        authService.verifyAccount(token);
         return new ResponseEntity<>("Kích hoạt tài khoản thành công", HttpStatus.OK);
     }
 
@@ -61,8 +61,8 @@ public class AuthSmatController {
         if (loginRequestDTO.getPassword().isEmpty()) {
             return  ResponseEntity.badRequest().body(new MessageResponse("Error: Hãy nhập password!!"));
         }
+        userEntity = userRepository.findByUsername(loginRequestDTO.getUsername());
         if (userRepository.existsByUsername(loginRequestDTO.getUsername())) {
-            userEntity = userRepository.findByUsername(loginRequestDTO.getUsername());
             boolean checkPass = passwordEncoder.matches(loginRequestDTO.getPassword(),userEntity.get().getPassword());
             if (!checkPass) {
                 return ResponseEntity.badRequest().body(new MessageResponse("Error: Tên đăng nhập hoặc mật khẩu không đúng1!!"));
@@ -70,7 +70,6 @@ public class AuthSmatController {
         } else {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Tên đăng nhập hoặc mật khẩu không đúng!!"));
         }
-        userEntity = userRepository.findByUsername(loginRequestDTO.getUsername());
         if(!userEntity.get().isEnabled()) {
             System.out.println(userEntity.get().isEnabled());
             return  ResponseEntity.badRequest().body(new MessageResponse("Error: Tài khoản của bạn đang bị vô hiệu hóa!! Liên hệ với admin"));
