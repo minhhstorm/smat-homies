@@ -72,7 +72,7 @@ public class AuthSmatController {
         }
         if(!userEntity.get().isEnabled()) {
             System.out.println(userEntity.get().isEnabled());
-            return  ResponseEntity.badRequest().body(new MessageResponse("Error: Tài khoản của bạn đang bị vô hiệu hóa!! Liên hệ với admin"));
+            return  ResponseEntity.badRequest().body(new MessageResponse("Error: Tài khoản của bạn chưa được kích hoạt!! Liên hệ với admin"));
         }
         return authService.login(loginRequestDTO);
     }

@@ -46,6 +46,10 @@ public class AdminService {
     }
 
     public List<IngredientEntity> getAllIngredient() {
-        return ingredientRepository.findAll();
+        return ingredientRepository.findAllss();
+    }
+
+    public List<DishEntity> getAllDish() {
+        return  dishRepository.findAll();
     }
 }

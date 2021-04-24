@@ -1,13 +1,12 @@
 package smat.meal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Data
@@ -29,7 +28,7 @@ public class DishEntity {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ingredient_dish",
                     joinColumns = @JoinColumn(name = "ingredient_id")
                     , inverseJoinColumns = @JoinColumn(name = "dish_id"))
