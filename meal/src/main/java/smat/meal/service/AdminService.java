@@ -41,7 +41,6 @@ public class AdminService {
         int size = addDishRequestDTO.getIngredients().size();
         for (int i = 0; i < size; i++) {
             ingredientEntity = ingredientRepository.findByName(addDishRequestDTO.getIngredients().get(i + 1));
-            System.out.println(ingredientEntity.toString());
             ingredients.add(ingredientEntity);
         }
         dishEntity.setIngredients(ingredients);

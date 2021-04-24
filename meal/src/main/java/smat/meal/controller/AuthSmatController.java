@@ -70,6 +70,9 @@ public class AuthSmatController {
         } else {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Tên đăng nhập hoặc mật khẩu không đúng!!"));
         }
+        if (!userEntity.get().isEnabled()) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Error: Tài khoản chưa được kích hoạt!!"));
+        }
         return authService.login(loginRequestDTO);
     }
 }
