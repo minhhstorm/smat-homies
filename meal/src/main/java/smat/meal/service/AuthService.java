@@ -84,7 +84,7 @@ public class AuthService {
         return passwordEncoder.encode(password);
     }
 
-    public void verifyAccount(String token) {
+    public void verifyAccout(String token) {
         Optional<TokenEntity> tokenOptional = tokenRepository.findByToken(token);
         tokenOptional.orElseThrow(() -> new SmatException("Mã không hợp lệ"));
         fetchUserAndEnable(tokenOptional.get());
@@ -106,13 +106,12 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String authenticationToken = jwtProvider.generateToken(authentication);
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-
         List<String> roles = userDetails.getAuthorities().stream()
                                 .map(GrantedAuthority::getAuthority)
                                 .collect(Collectors.toList());
         return new JwtLoginResponseDTO(authenticationToken, userDetails.getId()
                                         , userDetails.getUsername()
-                                        , userDetails.getEmail()
-                                        , roles);
+                                            , userDetails.getEmail()
+                                            , roles);
     }
 }

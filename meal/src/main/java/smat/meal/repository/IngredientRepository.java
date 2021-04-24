@@ -1,7 +1,6 @@
 package smat.meal.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import smat.meal.entity.IngredientEntity;
 
@@ -12,6 +11,5 @@ public interface IngredientRepository extends JpaRepository<IngredientEntity, Lo
     Boolean existsByName(String name);
     IngredientEntity findByName(String name);
 
-    @Query(value = "select e from IngredientEntity e")
-    List<IngredientEntity> findAllss();
+    List<IngredientEntity> findAll();
 }
