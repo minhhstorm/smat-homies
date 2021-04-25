@@ -9,8 +9,9 @@ import smat.meal.entity.IngredientEntity;
 import smat.meal.repository.DishRepository;
 import smat.meal.repository.IngredientRepository;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -30,20 +31,21 @@ public class AdminService {
         ingredientRepository.save(ingredientEntity);
     }
 
-    public void insertDish(AddDishRequestDTO addDishRequestDTO) {
+    public void addDish(AddDishRequestDTO addDishRequestDTO) {
         DishEntity dishEntity = new DishEntity();
-        IngredientEntity ingredientEntity = new IngredientEntity();
         dishEntity.setName(addDishRequestDTO.getName());
         dishEntity.setDescription(addDishRequestDTO.getDescription());
         dishEntity.setType(addDishRequestDTO.getType());
-        List<IngredientEntity> ingredients = new ArrayList<>();
+        Set<IngredientEntity> ingredients = new HashSet<>();
 
         int size = addDishRequestDTO.getIngredients().size();
         for (int i = 0; i < size; i++) {
-            ingredientEntity = ingredientRepository.findByName(addDishRequestDTO.getIngredients().get(i + 1));
+            IngredientEntity ingredientEntity = new IngredientEntity();
+            ingredientEntity.setId(addDishRequestDTO.getIngredients().get(i));
             ingredients.add(ingredientEntity);
         }
         dishEntity.setIngredients(ingredients);
+        System.out.println(dishEntity.toString());
         dishRepository.save(dishEntity);
     }
 

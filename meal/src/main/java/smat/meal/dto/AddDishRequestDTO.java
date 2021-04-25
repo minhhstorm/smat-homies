@@ -15,5 +15,5 @@ public class AddDishRequestDTO {
     private String description;
     private int type;
 
-    List<String> ingredients = new ArrayList<>();
+    List<Long> ingredients = new ArrayList<>();
 }

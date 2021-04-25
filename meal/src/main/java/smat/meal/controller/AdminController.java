@@ -42,7 +42,7 @@ public class AdminController {
         if (dishRepository.existsByName(addDishRequestDTO.getName())) {
             return new ResponseEntity<>("Món ăn đã tồn tại", HttpStatus.CONFLICT);
         }
-        adminService.insertDish(addDishRequestDTO);
+        adminService.addDish(addDishRequestDTO);
         return new ResponseEntity<>("Thêm món ăn thành công", HttpStatus.CREATED);
     }
 
