@@ -9,9 +9,7 @@ import smat.meal.entity.IngredientEntity;
 import smat.meal.repository.DishRepository;
 import smat.meal.repository.IngredientRepository;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -55,5 +53,17 @@ public class AdminService {
 
     public List<DishEntity> getAllDish() {
         return  dishRepository.findAll();
+    }
+
+    public List<DishEntity> getMeal() {
+        List<DishEntity> listDish = new ArrayList<>();
+        DishEntity dishEntity;
+
+        String ran = "RAND()";
+        for (int i = 0; i < 3; i++) {
+            dishEntity = dishRepository.findByType(i + 1, ran);
+            listDish.add(dishEntity);
+        }
+        return listDish;
     }
 }

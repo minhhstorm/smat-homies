@@ -55,4 +55,9 @@ public class AdminController {
     public ResponseEntity<List<DishEntity>> getAllDish() {
         return new ResponseEntity<>(adminService.getAllDish(), HttpStatus.OK);
     }
+
+    @GetMapping("/get-meal")
+    public ResponseEntity<List<DishEntity>> getMeal() {
+            return new ResponseEntity<>(adminService.getMeal(), HttpStatus.OK);
+    }
 }
