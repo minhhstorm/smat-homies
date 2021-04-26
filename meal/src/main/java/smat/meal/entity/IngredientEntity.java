@@ -33,6 +33,4 @@ public class IngredientEntity {
     @Column(name = "type")
     private int type;
 
-    @ManyToMany(mappedBy = "ingredients")
-    private List<DishEntity> dishs = new ArrayList<>();
 }
