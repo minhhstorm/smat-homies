@@ -1,20 +1,20 @@
-<div class="login-page">
+<div class="login-page bg-c">
     <div class="container-login">
         <div class="brand">
             <img class="brand-img" src="/assets/img/login-page/logo.png" alt="#">
         </div>
         <div class="login-section" style="display: flex">
             <div class="fork">
-                <img src="/assets/img/login-page/fork.png" alt="#">
+                <img src="/assets/img/login-page/fork.png" class="" alt="#" width="150px">
             </div>
-            <form class="login-form" style="display: flex;flex-direction: column;justify-content: center;align-items: center" *ngIf="!isRegister" [formGroup]="loginForm">
+            <form class="login-form" style="display: flex;flex-direction: column;padding: 3.4vw" *ngIf="!isRegister" [formGroup]="loginForm">
                 <div class="login-form__header">
-                    <h3>Chào mừng bạn</h3>
-                    <h3> đến với smat-meal</h3>
+                    <h5>CHÀO MỪNG BẠN</h5>
+                    <h5> ĐẾN VỚI SMAT-meal</h5>
                 </div>
                 <div class="login-form__link-sign-up" style="display: flex">
                     <p>Lần đầu ghé thăm?</p>
-                    <a class="login-form__link-sign-up_link" (click)="isRegister = !isRegister">Hãy tạo một tài khoản mới</a>
+                    <a class="login-form__link-sign-up_link" (click)="isRegister = !isRegister" href="/sign-up">Hãy tạo một tài khoản mới</a>
                 </div>
                 <div class="login-form__username">
                     <label for="username">Email</label>
@@ -38,27 +38,27 @@
                                 </span>
                 </div>
                 <div class="login-form__forgot-password">
-                    <p>Quên mật khẩu?</p>
+                    <p class="login-form__forgot-password_p">Quên mật khẩu?</p>
                 </div>
                 <div class="login-form__btn-submit">
                     <button class="btn-login" (click)="login()">Đăng nhập</button>
                 </div>
                 <div class="login-form__title-login-social" style="display: flex">
-                    <svg height="20" width="120">
+                    <svg height="20" width="80">
                         <g fill="none" stroke="#8CCB51">
                             <path stroke-width="1" d="M5 15 l215 0" />
                         </g>
                         Sorry, your browser does not support inline SVG.
                     </svg>
                     Hoặc đăng nhập bằng
-                    <svg height="20" width="120">
+                    <svg height="20" width="80">
                         <g fill="none" stroke="#8CCB51">
                             <path stroke-width="1" d="M5 15 l215 0" />
                         </g>
                         Sorry, your browser does not support inline SVG.
                     </svg>
                 </div>
-                <div class="login-form__login-social" style="display: flex">
+                <div class="login-form__login-social" style="display: flex;padding-left: 20%;">
                     <div class="login-form__login-social__facebook">
                         <img src="/assets/img/login-page/fb-logo.png" alt="#" width="60px">
                     </div>
@@ -98,7 +98,7 @@
 
 
             <div class="knife">
-                <img src="/assets/img/login-page/knife.png" alt="#">
+                <img src="/assets/img/login-page/login-knife.png" alt="#" width="150px">
             </div>
         </div>
     </div>

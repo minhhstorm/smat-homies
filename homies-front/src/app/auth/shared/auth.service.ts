@@ -55,7 +55,7 @@ export class AuthService {
         this.localStorage.clear('expiresAt');
 
         this.localStorage.store('authenticationToken',
-          response.authenticationToken);
+          response.token);
         this.localStorage.store('expiresAt', response.expiresAt);
       }));
   }

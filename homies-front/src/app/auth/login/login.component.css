@@ -16,11 +16,15 @@
 }
 
 .login-form {
-    width: 60vw;
+    width: 36vw;
     display: flex;
-    justify-content: center;
     background-image: url("/assets/img/login-page/dish.png");
-    object-fit: fill;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.login-form > div {
+    margin-left: 20%;
 }
 
 .login-form__link-sign-up_link {
@@ -30,11 +34,18 @@
 .login-form__username {
     display: flex;
     flex-direction: column;
+    width: 70%;
 }
 
 .login-form__password {
     display: flex;
     flex-direction: column;
+    width: 70%;
+}
+
+.login-form__forgot-password_p {
+    float: right;
+    width: 46%;
 }
 
 .login-section {
@@ -63,10 +74,16 @@
 /*rgba(214, 245, 152, 0.5)*/
 
 .login-page {
-    background-image: url('/assets/img/login-page/bg-footer.png'), url('/assets/img/login-page/bg-f2.png');
+    background-image: url('/assets/img/login-page/bg-footer.png'), linear-gradient(#d4f598 0%, #d4f598 100%);
+    opacity: 0.8;
+    background-blend-mode: soft-light;
     background-repeat: repeat-x;
     background-position: bottom;
     background-size: auto 33vh;
+}
+
+.login-form__btn-submit {
+    padding-left: 22%;
 }
 
 .btn-login {
