@@ -42,7 +42,7 @@ public class AdminController {
         if (dishRepository.existsByName(addDishRequestDTO.getName())) {
             return new ResponseEntity<>("Món ăn đã tồn tại", HttpStatus.CONFLICT);
         }
-        adminService.insertDish(addDishRequestDTO);
+        adminService.addDish(addDishRequestDTO);
         return new ResponseEntity<>("Thêm món ăn thành công", HttpStatus.CREATED);
     }
 
@@ -54,5 +54,10 @@ public class AdminController {
     @GetMapping("/get-dish")
     public ResponseEntity<List<DishEntity>> getAllDish() {
         return new ResponseEntity<>(adminService.getAllDish(), HttpStatus.OK);
+    }
+
+    @GetMapping("/get-meal")
+    public ResponseEntity<List<DishEntity>> getMeal() {
+            return new ResponseEntity<>(adminService.getMeal(), HttpStatus.OK);
     }
 }

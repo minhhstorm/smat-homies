@@ -3,7 +3,6 @@ package smat.meal.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import smat.meal.entity.IngredientEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,5 +15,5 @@ public class AddDishRequestDTO {
     private String description;
     private int type;
 
-    List<Long> ingredients;
+    List<Long> ingredients = new ArrayList<>();
 }

@@ -1,13 +1,12 @@
 package smat.meal.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,7 +33,4 @@ public class IngredientEntity {
     @Column(name = "type")
     private int type;
 
-    @ManyToMany(mappedBy = "ingredients")
-    @JsonIgnore
-    private Set<DishEntity> dishs = new HashSet<>();
 }

@@ -9,9 +9,7 @@ import smat.meal.entity.IngredientEntity;
 import smat.meal.repository.DishRepository;
 import smat.meal.repository.IngredientRepository;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +17,7 @@ public class AdminService {
 
     private final DishRepository dishRepository;
     private final IngredientRepository ingredientRepository;
+
 
     public void insertIngredient(AddIngredientRequestDTO addIngredientRequestDTO) {
         IngredientEntity ingredientEntity = new IngredientEntity();
@@ -30,26 +29,41 @@ public class AdminService {
         ingredientRepository.save(ingredientEntity);
     }
 
-    public void insertDish(AddDishRequestDTO addDishRequestDTO) {
+    public void addDish(AddDishRequestDTO addDishRequestDTO) {
         DishEntity dishEntity = new DishEntity();
         dishEntity.setName(addDishRequestDTO.getName());
         dishEntity.setDescription(addDishRequestDTO.getDescription());
         dishEntity.setType(addDishRequestDTO.getType());
         Set<IngredientEntity> ingredients = new HashSet<>();
-        for (int i = 0; i < addDishRequestDTO.getIngredients().size(); i++ ) {
-            IngredientEntity ieE = new IngredientEntity();
-            ieE.setId(addDishRequestDTO.getIngredients().get(i));
-            ingredients.add(ieE);
+
+        int size = addDishRequestDTO.getIngredients().size();
+        for (int i = 0; i < size; i++) {
+            IngredientEntity ingredientEntity = new IngredientEntity();
+            ingredientEntity.setId(addDishRequestDTO.getIngredients().get(i));
+            ingredients.add(ingredientEntity);
         }
         dishEntity.setIngredients(ingredients);
+        System.out.println(dishEntity.toString());
         dishRepository.save(dishEntity);
     }
 
     public List<IngredientEntity> getAllIngredient() {
-        return ingredientRepository.findAllss();
+        return ingredientRepository.findAll();
     }
 
     public List<DishEntity> getAllDish() {
         return  dishRepository.findAll();
+    }
+
+    public List<DishEntity> getMeal() {
+        List<DishEntity> listDish = new ArrayList<>();
+        DishEntity dishEntity;
+
+        String ran = "RAND()";
+        for (int i = 0; i < 3; i++) {
+            dishEntity = dishRepository.findByType(i + 1, ran);
+            listDish.add(dishEntity);
+        }
+        return listDish;
     }
 }

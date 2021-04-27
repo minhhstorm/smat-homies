@@ -6,5 +6,5 @@ import lombok.experimental.UtilityClass;
 public class Constant {
     public static final String MESSAGE = "message";
     public static final String MAIL_TEMPLATE = "mailTemplate";
-    public static final String ACTIVATION_EMAIL = "http://localhost:8081/smat/accountVerification";
+    public static final String ACTIVATION_EMAIL = "http://localhost:8081/auth/accountVerification";
 }
