@@ -17,7 +17,7 @@ import smat.meal.service.AuthService;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/smat")
+@RequestMapping("/auth")
 @AllArgsConstructor
 public class AuthSmatController {
 
