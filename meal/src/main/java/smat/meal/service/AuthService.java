@@ -99,6 +99,7 @@ public class AuthService {
         userRepository.save(userEntity);
     }
 
+    @Transactional
     public JwtLoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequestDTO.getUsername(),

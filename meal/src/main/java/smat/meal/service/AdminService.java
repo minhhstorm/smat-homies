@@ -51,19 +51,5 @@ public class AdminService {
         return ingredientRepository.findAll();
     }
 
-    public List<DishEntity> getAllDish() {
-        return  dishRepository.findAll();
-    }
 
-    public List<DishEntity> getMeal() {
-        List<DishEntity> listDish = new ArrayList<>();
-        DishEntity dishEntity;
-
-        String ran = "RAND()";
-        for (int i = 0; i < 3; i++) {
-            dishEntity = dishRepository.findByType(i + 1, ran);
-            listDish.add(dishEntity);
-        }
-        return listDish;
-    }
 }

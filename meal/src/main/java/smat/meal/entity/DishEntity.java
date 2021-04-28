@@ -28,7 +28,7 @@ public class DishEntity {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ingredient_dish",
                     joinColumns = @JoinColumn(name = "ingredient_id")
                     , inverseJoinColumns = @JoinColumn(name = "dish_id"))

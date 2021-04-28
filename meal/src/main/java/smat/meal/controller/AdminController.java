@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import smat.meal.dto.AddDishRequestDTO;
@@ -49,15 +52,5 @@ public class AdminController {
     @GetMapping("/get-ingredient")
     public ResponseEntity<List<IngredientEntity>> getAllIngredient() {
         return new ResponseEntity<>(adminService.getAllIngredient(), HttpStatus.OK);
-    }
-
-    @GetMapping("/get-dish")
-    public ResponseEntity<List<DishEntity>> getAllDish() {
-        return new ResponseEntity<>(adminService.getAllDish(), HttpStatus.OK);
-    }
-
-    @GetMapping("/get-meal")
-    public ResponseEntity<List<DishEntity>> getMeal() {
-            return new ResponseEntity<>(adminService.getMeal(), HttpStatus.OK);
     }
 }

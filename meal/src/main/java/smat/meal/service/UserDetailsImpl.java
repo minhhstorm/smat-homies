@@ -52,6 +52,7 @@ public class UserDetailsImpl implements UserDetails {
 		this.authorities = authorities;
 	}
 
+
 	public static UserDetailsImpl build(UserEntity userEntity) {
 		List<GrantedAuthority> authorities = userEntity.getRoles().stream()
 				.map(roleEntity -> new SimpleGrantedAuthority(roleEntity.getName().name()))
