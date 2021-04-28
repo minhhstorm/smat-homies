@@ -1,3 +1,104 @@
-.register-section {
-  margin: 100px;
+.login-page {
+
+}
+
+.login-page .container-login {
+    width: 955px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.brand-img {
+    width: 33vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    width: 36vw;
+    display: flex;
+    background-image: url("/assets/img/login-page/dish.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.login-form > div {
+    margin-left: 20%;
+}
+
+.login-form__link-sign-up_link {
+    color: #359E09;
+}
+
+.login-form__username {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.login-form__email {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.login-form__password {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.login-form__forgot-password_p {
+    float: right;
+    width: 46%;
+}
+
+.login-form__btn-submit {
+    margin-top: 20px;
+}
+
+.login-form {
+}
+
+.login-failed, .register-success{
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+    border: 2px solid black;
+    width: 65%;
+    background-color: red;
+}
+
+.login-failed-text, .register-success-text{
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+    color: aliceblue;
+}
+
+/*rgba(214, 245, 152, 0.5)*/
+
+.login-page {
+    background-image: url('/assets/img/login-page/bg-footer.png'), linear-gradient(#d4f598 0%, #d4f598 100%);
+    opacity: 0.8;
+    background-blend-mode: soft-light;
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: auto 33vh;
+}
+
+.login-form__btn-submit {
+    padding-left: 22%;
+}
+
+.btn-login {
+    color: #fff;
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 22px;
+    background: #FBB531;
+    font-weight: 700;
+    border: none;
+    text-transform: uppercase;
 }

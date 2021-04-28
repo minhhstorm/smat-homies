@@ -1,55 +1,66 @@
-<div class="register-section">
-    <div class="row justify-content-center">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header" style="text-align: center">
-                    <h4>Register</h4>
+<div class="login-page bg-c">
+    <div class="container-login">
+        <div class="brand">
+            <img class="brand-img" src="/assets/img/login-page/logo.png" alt="#">
+        </div>
+        <div class="login-section" style="display: flex">
+            <div class="fork">
+                <img src="/assets/img/login-page/fork.png" class="" alt="#" width="150px">
+            </div>
+            <form class="login-form" style="display: flex;flex-direction: column;padding: 3.4vw" [formGroup]="signupForm">
+                <div class="login-form__header">
+                    <h5>TẠO TÀI KHOẢN MỚI</h5>
                 </div>
-                <div class="card-body">
-                    <form [formGroup]="signupForm" (ngSubmit)="signup()">
-                        <div class="form-group row">
-                            <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail
-                                Address</label>
-                            <div class="col-md-6">
-                                <input type="text" [formControlName]="'email'" id="email_address" class="form-control" name="email-address" required
-                                    autofocus>
-                                <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
-                                    Please provide a valid email
-                                </span>                                    
-                            </div>
-                        </div>
- 
-                        <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">User Name</label>
-                            <div class="col-md-6">
-                                <input type="text" [formControlName]="'username'"class="form-control" required autofocus>
-                                <span *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched">
-                                    Please provide a valid username
-                                </span>                                 
-                            </div>
-                        </div>
- 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                            <div class="col-md-6">
-                                <input type="password" [formControlName]="'password'" id="password" class="form-control" name="password" required>
-                                <span *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched">
-                                    Please provide a valid Password
-                                </span>  
-                            </div>
-                        </div>
- 
-                        <span class="col-md-6 offset-md-4">
-                            <button type="submit" class="sign-up">
-                                Sign Up
-                            </button>
-                            <span style="padding-left: 15px">Existing user? <a routerLink="/login">Log In</a></span>
-                        </span>
-                    </form>
+                <div class="login-form__username">
+                    <label for="username">Tên đăng nhập</label>
+                    <input class="input-green" type="text" id="username" [formControlName]="'username'"
+                           name="user_name"
+                           required
+                           autofocus
+                    >
+                    <span *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched">
+                                   Please provide a valid username
+                                </span>
                 </div>
+                <div class="login-form__email">
+                    <label for="email-login">Email</label>
+
+                    <input type="email" id="email-login" class="input-green" [formControlName]="'email'"
+                           name="email"
+                           required>
+                    <span *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">
+                                  Email cannot be empty
+                                </span>
+                </div>
+                <div class="login-form__password">
+                    <label for="password-login">Mật khẩu</label>
+
+                    <input type="password" id="password-login" class="input-green" [formControlName]="'passwords'"
+                           name="passwords"
+                           required>
+                    <span *ngIf="!signupForm.get('passwords').valid && signupForm.get('passwords').touched">
+                                  Password cannot be empty
+                                </span>
+                </div>
+                <div class="login-form__password">
+                    <label for="retype-password-login">Nhập lại mật khẩu</label>
+
+                    <input type="password" id="retype-password-login" class="input-green" [formControlName]="'retypePasswords'"
+                           name="retypePasswords"
+                           required>
+                    <span *ngIf="!signupForm.get('retypePasswords').valid && signupForm.get('retypePasswords').touched">
+                                  Retype password cannot be empty
+                                </span>
+                </div>
+                <div class="login-form__btn-submit">
+                    <button class="btn-login" (click)="signup()">Đăng kí</button>
+                </div>
+            </form>
+
+            <div class="knife">
+                <img src="/assets/img/login-page/login-knife.png" alt="#" width="150px">
             </div>
         </div>
-        <div class="col-md-3"></div>
     </div>
 </div>
+

@@ -29,6 +29,7 @@ export class SignupComponent implements OnInit {
       username: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
+      retypePasswords: new FormControl('', Validators.required),
     });
   }
 
@@ -36,6 +37,7 @@ export class SignupComponent implements OnInit {
     this.signupRequestPayload.email = this.signupForm.get('email').value;
     this.signupRequestPayload.username = this.signupForm.get('username').value;
     this.signupRequestPayload.password = this.signupForm.get('password').value;
+    this.signupRequestPayload.password = this.signupForm.get('retypePasswords').value;
 
     this.authService.signup(this.signupRequestPayload)
       .subscribe(data => {
