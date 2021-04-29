@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import smat.meal.dto.AddDishRequestDTO;
 import smat.meal.dto.AddIngredientRequestDTO;
+import smat.meal.dto.ParticipantDTO;
 import smat.meal.entity.DishEntity;
 import smat.meal.entity.IngredientEntity;
 import smat.meal.repository.DishRepository;
@@ -52,4 +53,7 @@ public class AdminService {
     }
 
 
+    public void registerMeal(ParticipantDTO participantDTO) {
+        System.out.println("adc");
+    }
 }

@@ -10,8 +10,8 @@ import smat.meal.common.Constant;
 @AllArgsConstructor
 public class MailContentBuilder {
 
-    private TemplateEngine templateEngine;
-    String build(String message) {
+    private final TemplateEngine templateEngine;
+    public String build(String message) {
         Context context = new Context();
         context.setVariable(Constant.MESSAGE, message);
         return templateEngine.process(Constant.MAIL_TEMPLATE, context);

@@ -66,7 +66,7 @@ public class AuthService {
         String token = generateTokenUser(userEntity);
         String message = mailContentBuilder.build("Cảm ơn bạn đã đăng kí tài khoản Smat Meal, hãy nhấn vào link bên dưới để kích hoạt tài khoản của bạn: \n" +
                 Constant.ACTIVATION_EMAIL + "/" + token);
-        mailService.sendMail(new NotificationEmail("Hãy kích hoạt tài khoản của bạn", userEntity.getEmail(), message));
+        mailService.sendMailSignUp(new NotificationEmail("Hãy kích hoạt tài khoản của bạn", userEntity.getEmail(), message));
     }
 
     private String generateTokenUser(UserEntity userEntity) {
