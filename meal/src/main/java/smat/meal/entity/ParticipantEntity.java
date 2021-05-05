@@ -27,10 +27,10 @@ public class ParticipantEntity {
     @Column(name = "user_id")
     private Long userId;
 
-    @ManyToOne
-    @JoinColumn(name = "meal_id")
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private MealEntity mealEntity;
+//    @ManyToOne
+//    @JoinColumn(name = "meal_id")
+//    @EqualsAndHashCode.Exclude
+//    @ToString.Exclude
+//    private MealEntity mealEntity;
 
 }

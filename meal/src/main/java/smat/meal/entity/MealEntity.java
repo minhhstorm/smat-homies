@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.List;
 
 @Entity
 @Data
@@ -23,8 +22,8 @@ public class MealEntity {
     @Column(name = "type")
     private int type;
 
-    @OneToMany(mappedBy = "mealEntity", cascade = CascadeType.ALL)
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private List<ParticipantEntity> participantEntities;
+//    @OneToMany(mappedBy = "mealEntity", cascade = CascadeType.ALL)
+//    @EqualsAndHashCode.Exclude
+//    @ToString.Exclude
+//    private List<ParticipantEntity> participantEntities;
 }
