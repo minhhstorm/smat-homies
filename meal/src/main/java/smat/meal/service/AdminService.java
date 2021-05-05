@@ -10,6 +10,9 @@ import smat.meal.entity.IngredientEntity;
 import smat.meal.repository.DishRepository;
 import smat.meal.repository.IngredientRepository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 @Service
@@ -44,7 +47,6 @@ public class AdminService {
             ingredients.add(ingredientEntity);
         }
         dishEntity.setIngredients(ingredients);
-        System.out.println(dishEntity.toString());
         dishRepository.save(dishEntity);
     }
 
@@ -54,6 +56,10 @@ public class AdminService {
 
 
     public void registerMeal(ParticipantDTO participantDTO) {
-        System.out.println("adc");
+        LocalDate day = LocalDate.now();
+        String[] timeArray = participantDTO.getTimeArrived().split(":");
+        LocalTime hour = LocalTime.of(Integer.parseInt(timeArray[0]), Integer.parseInt(timeArray[1]));
+        LocalDateTime timeArrived = LocalDateTime.of(day, hour);
+
     }
 }

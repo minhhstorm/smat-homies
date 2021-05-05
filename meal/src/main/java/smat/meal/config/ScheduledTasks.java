@@ -32,11 +32,8 @@ public class ScheduledTasks {
 //            logger.info("Success");
 //        }
         Optional<UserEntity> userEntity = userRepository.findByUsername("minhnc");
-        System.out.println("1------------");
         String message = mailContentBuilder.build("Hãy vào đăng kí cơm nào!!");
-        System.out.println("2------------");
         mailService.sendMailForMeal(new NotificationEmail("Hãy đăng kí cơm nào", userEntity.get().getEmail(), message));
-        System.out.println("3------------");
         logger.info("Success");
     }
 

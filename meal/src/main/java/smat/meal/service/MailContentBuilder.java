@@ -11,6 +11,7 @@ import smat.meal.common.Constant;
 public class MailContentBuilder {
 
     private final TemplateEngine templateEngine;
+
     public String build(String message) {
         Context context = new Context();
         context.setVariable(Constant.MESSAGE, message);

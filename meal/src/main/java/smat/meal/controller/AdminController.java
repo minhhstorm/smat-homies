@@ -18,6 +18,8 @@ import smat.meal.repository.DishRepository;
 import smat.meal.repository.IngredientRepository;
 import smat.meal.service.AdminService;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -57,6 +59,12 @@ public class AdminController {
 
     @PostMapping("/participant")
     public ResponseEntity<String> registerMeal(@RequestBody ParticipantDTO participantDTO) {
+        LocalTime time = LocalTime.now();
+        LocalTime time2 = LocalTime.of(17,30, 0);
+        int compare = time.compareTo(time2);
+        if (compare > 0) {
+            return new ResponseEntity<>("Đã quá giờ báo cơm",HttpStatus.BAD_REQUEST);
+        }
         adminService.registerMeal(participantDTO);
         return new ResponseEntity<>("Đăng kí ăn thành công",HttpStatus.OK);
     }
