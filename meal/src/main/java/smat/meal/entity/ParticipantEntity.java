@@ -3,7 +3,7 @@ package smat.meal.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -22,10 +22,13 @@ public class ParticipantEntity {
     private boolean isLate;
 
     @Column(name = "time_arrived")
-    private Instant timeArrived;
+    private LocalDateTime timeArrived;
 
     @Column(name = "user_id")
     private Long userId;
+
+    @Column(name = "name")
+    private String name;
 
 //    @ManyToOne
 //    @JoinColumn(name = "meal_id")

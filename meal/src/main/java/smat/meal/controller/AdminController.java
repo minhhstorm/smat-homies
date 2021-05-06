@@ -14,6 +14,7 @@ import smat.meal.dto.AddIngredientRequestDTO;
 import smat.meal.dto.ParticipantDTO;
 import smat.meal.entity.DishEntity;
 import smat.meal.entity.IngredientEntity;
+import smat.meal.entity.ParticipantEntity;
 import smat.meal.repository.DishRepository;
 import smat.meal.repository.IngredientRepository;
 import smat.meal.service.AdminService;
@@ -60,12 +61,23 @@ public class AdminController {
     @PostMapping("/participant")
     public ResponseEntity<String> registerMeal(@RequestBody ParticipantDTO participantDTO) {
         LocalTime time = LocalTime.now();
-        LocalTime time2 = LocalTime.of(17,30, 0);
-        int compare = time.compareTo(time2);
+        LocalTime timeMock = LocalTime.of(17,30, 0);
+        int compare = time.compareTo(timeMock);
         if (compare > 0) {
             return new ResponseEntity<>("Đã quá giờ báo cơm",HttpStatus.BAD_REQUEST);
         }
         adminService.registerMeal(participantDTO);
         return new ResponseEntity<>("Đăng kí ăn thành công",HttpStatus.OK);
     }
+
+    @GetMapping("/show-participant")
+    public ResponseEntity<List<ParticipantEntity>> showParticipant() {
+        return new ResponseEntity<>(adminService.showParticipant(), HttpStatus.OK);
+    }
+
+    @GetMapping("/get-list-ingredient-market")
+    public ResponseEntity<List<IngredientEntity>> getListIngredientMarket(List<DishEntity> dishEntities) {
+        return new ResponseEntity<>(adminService.getListIngredientMarket(dishEntities), HttpStatus.OK);
+    }
+
 }

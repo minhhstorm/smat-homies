@@ -6,7 +6,9 @@ import smat.meal.entity.ParticipantEntity;
 
 import java.util.List;
 
+
 @Repository
 public interface ParticipantRepository extends JpaRepository<ParticipantEntity, Long> {
+    ParticipantEntity findByUserId(Long userId);
     List<ParticipantEntity> findAll();
 }

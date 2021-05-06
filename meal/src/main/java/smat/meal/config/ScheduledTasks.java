@@ -22,19 +22,19 @@ public class ScheduledTasks {
     private final MailContentBuilder mailContentBuilder;
     private final MailService mailService;
 
-    @Scheduled(cron = "0 49 16 * * ?")
+    @Scheduled(cron = "0 01 17 * * ?")
     public void SendMailForMeal() {
-//        List<UserEntity> userEntities = userRepository.findAll();
-//        String message = mailContentBuilder.build("Hãy vào đăng kí cơm nào!!");
-//        for (int i = 0; i < userEntities.size(); i++) {
-//            System.out.println(userEntities.get(i).getEmail());
-//            mailService.sendMailForMeal(new NotificationEmail("Hãy đăng kí cơm nào", userEntities.get(i).getEmail(), message));
-//            logger.info("Success");
-//        }
-        Optional<UserEntity> userEntity = userRepository.findByUsername("minhnc");
+        List<UserEntity> userEntities = userRepository.findAll();
         String message = mailContentBuilder.build("Hãy vào đăng kí cơm nào!!");
-        mailService.sendMailForMeal(new NotificationEmail("Hãy đăng kí cơm nào", userEntity.get().getEmail(), message));
-        logger.info("Success");
+        for (UserEntity userEntity : userEntities) {
+            System.out.println(userEntity.getEmail());
+            mailService.sendMailForMeal(new NotificationEmail("Hãy đăng kí cơm nào", userEntity.getEmail(), message));
+            logger.info("Success");
+        }
+//        Optional<UserEntity> userEntity = userRepository.findByUsername("minhnc");
+//        String message = mailContentBuilder.build("Hãy vào đăng kí cơm nào!!");
+//        mailService.sendMailForMeal(new NotificationEmail("Hãy đăng kí cơm nào", userEntity.get().getEmail(), message));
+//        logger.info("Success");
     }
 
 

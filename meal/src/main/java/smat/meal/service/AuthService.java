@@ -7,8 +7,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import smat.meal.common.Constant;
 import smat.meal.common.ERole;
 import smat.meal.dto.JwtLoginResponseDTO;
@@ -24,7 +27,6 @@ import smat.meal.repository.TokenRepository;
 import smat.meal.repository.UserRepository;
 import smat.meal.security.JwtProvider;
 
-import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -114,5 +116,13 @@ public class AuthService {
                                         , userDetails.getUsername()
                                             , userDetails.getEmail()
                                             , roles);
+    }
+
+    @Transactional(readOnly = true)
+    public UserEntity getCurrentUser() {
+//        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetailsImpl principal = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userRepository.findByUsername(principal.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found - " + principal.getUsername()));
     }
 }

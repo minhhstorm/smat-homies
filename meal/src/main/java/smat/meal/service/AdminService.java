@@ -7,13 +7,13 @@ import smat.meal.dto.AddIngredientRequestDTO;
 import smat.meal.dto.ParticipantDTO;
 import smat.meal.entity.DishEntity;
 import smat.meal.entity.IngredientEntity;
+import smat.meal.entity.ParticipantEntity;
 import smat.meal.repository.DishRepository;
 import smat.meal.repository.IngredientRepository;
 import smat.meal.repository.ParticipantRepository;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import javax.transaction.Transactional;
+import java.time.*;
 import java.util.*;
 
 @Service
@@ -22,8 +22,8 @@ public class AdminService {
 
     private final DishRepository dishRepository;
     private final IngredientRepository ingredientRepository;
+    private final AuthService authService;
     private final ParticipantRepository participantRepository;
-
 
     public void insertIngredient(AddIngredientRequestDTO addIngredientRequestDTO) {
         IngredientEntity ingredientEntity = new IngredientEntity();
@@ -57,12 +57,43 @@ public class AdminService {
     }
 
 
+    @Transactional
     public void registerMeal(ParticipantDTO participantDTO) {
         LocalDate day = LocalDate.now();
         String[] timeArray = participantDTO.getTimeArrived().split(":");
-        LocalTime hour = LocalTime.of(Integer.parseInt(timeArray[0]), Integer.parseInt(timeArray[1]));
-        LocalDateTime timeArrived = LocalDateTime.of(day, hour);
+        LocalTime hour = LocalTime.of(Integer.parseInt(timeArray[0]), Integer.parseInt(timeArray[1]), 0);
+        LocalTime mock = LocalTime.of(20, 0, 0);
+
+        Long userid = authService.getCurrentUser().getId();
+        ParticipantEntity participantEntity = participantRepository.findByUserId(userid);
+        if (participantEntity == null) {
+            participantEntity = new ParticipantEntity();
+        }
+
+        participantEntity.setLate(hour.isAfter(mock));
+
+        participantEntity.setTimeArrived((LocalDateTime.of(day, hour)));
+        participantEntity.setGuestAmount(participantDTO.getGuestAmount());
+        participantEntity.setUserId(authService.getCurrentUser().getId());
+        participantEntity.setName(authService.getCurrentUser().getName());
+        participantRepository.save(participantEntity);
+    }
+
+    public List<ParticipantEntity> showParticipant() {
+        return participantRepository.findAll();
+    }
+
+    public List<IngredientEntity> getListIngredientMarket(List<DishEntity> dishEntities) {
+        List<ParticipantEntity> participantEntities = participantRepository.findAll();
+        int member = participantEntities.size();
+        for (ParticipantEntity participantEntity : participantEntities) {
+            member = participantEntity.getGuestAmount() + member;
+        }
+        for (DishEntity dishEntity : dishEntities) {
+            System.out.println(dishRepository.findByName(dishEntity.getName()));
+        }
 
 
+        return null;
     }
 }

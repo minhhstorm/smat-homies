@@ -48,7 +48,6 @@ public class MailService {
         };
 
         try {
-            System.out.println("2-------------------");
             mailSender.send(message1Preparator);
             log.info("Sent!!");
         } catch (MailException exception) {
