@@ -5,26 +5,25 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "dish")
-public class DishEntity {
+@Table(name = "dish_ingredient")
+public class IngredientDishEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "dish_id")
+    private Long dishId;
 
-    @Column(name = "type")
-    private int type;
+    @Column(name = "ingredient_id")
+    private Long ingredientId;
 
-    @Lob
-    @Column(name = "description")
-    private String description;
+    @Column(name = "weight_ingredient")
+    private Long weight;
 }

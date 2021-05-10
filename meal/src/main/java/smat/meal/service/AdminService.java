@@ -40,16 +40,16 @@ public class AdminService {
         dishEntity.setName(addDishRequestDTO.getName());
         dishEntity.setDescription(addDishRequestDTO.getDescription());
         dishEntity.setType(addDishRequestDTO.getType());
-        Set<IngredientEntity> ingredients = new HashSet<>();
+//        Set<IngredientEntity> ingredients = new HashSet<>();
 
-        int size = addDishRequestDTO.getIngredients().size();
-        for (int i = 0; i < size; i++) {
-            IngredientEntity ingredientEntity = new IngredientEntity();
-            ingredientEntity.setId(addDishRequestDTO.getIngredients().get(i));
-            ingredients.add(ingredientEntity);
-        }
-        dishEntity.setIngredients(ingredients);
-        dishRepository.save(dishEntity);
+//        int size = addDishRequestDTO.getIngredients().size();
+//        for (int i = 0; i < size; i++) {
+//            IngredientEntity ingredientEntity = new IngredientEntity();
+//            ingredientEntity.setId(addDishRequestDTO.getIngredients().get(i));
+//            ingredients.add(ingredientEntity);
+//        }
+        dishEntity = dishRepository.save(dishEntity);
+        System.out.println(dishEntity.getId());
     }
 
     public List<IngredientEntity> getAllIngredient() {

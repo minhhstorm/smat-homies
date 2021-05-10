@@ -31,5 +31,4 @@ public class IngredientEntity {
     @Column(name = "type")
     private int type;
 
-
 }

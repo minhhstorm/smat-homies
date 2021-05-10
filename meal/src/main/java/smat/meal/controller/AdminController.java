@@ -31,6 +31,7 @@ public class AdminController {
     @Autowired
     private final IngredientRepository ingredientRepository;
 
+    // thêm nguyên liệu mới
     @PostMapping("/add-ingredient")
     public ResponseEntity<String> addIngredient(@Validated @RequestBody AddIngredientRequestDTO addIngredientRequestDTO) {
         if (ingredientRepository.existsByName(addIngredientRequestDTO.getName())) {
@@ -40,6 +41,7 @@ public class AdminController {
         return new ResponseEntity<>("Thêm nguyên liệu thành công", HttpStatus.CREATED);
     }
 
+    //Thêm món ăn mới
     @PostMapping("/add-dish")
     public ResponseEntity<String> addDish(@Validated @RequestBody AddDishRequestDTO addDishRequestDTO) {
         if (dishRepository.existsByName(addDishRequestDTO.getName())) {
