@@ -25,11 +25,11 @@ export class AuthService {
   }
 
   signup(signupRequestPayload: SignupRequestPayload): Observable<any> {
-    return this.httpClient.post('http://localhost:8080/api/auth/signup', signupRequestPayload, { responseType: 'text' });
+    return this.httpClient.post('http://localhost:8081/auth/signup', signupRequestPayload, { responseType: 'text' });
   }
 
   login(loginRequestPayload: LoginRequestPayload): Observable<boolean> {
-    return this.httpClient.post<LoginResponse>('http://localhost:8081/smat/login',
+    return this.httpClient.post<LoginResponse>('http://localhost:8081/auth/login',
       loginRequestPayload).pipe(map(data => {
         this.localStorage.store('authenticationToken', data.token);
         this.localStorage.store('username', data.username);
