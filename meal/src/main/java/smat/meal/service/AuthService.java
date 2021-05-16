@@ -7,8 +7,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import smat.meal.common.Constant;
 import smat.meal.common.ERole;
 import smat.meal.dto.JwtLoginResponseDTO;
@@ -24,7 +27,6 @@ import smat.meal.repository.TokenRepository;
 import smat.meal.repository.UserRepository;
 import smat.meal.security.JwtProvider;
 
-import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -66,7 +68,7 @@ public class AuthService {
         String token = generateTokenUser(userEntity);
         String message = mailContentBuilder.build("Cảm ơn bạn đã đăng kí tài khoản Smat Meal, hãy nhấn vào link bên dưới để kích hoạt tài khoản của bạn: \n" +
                 Constant.ACTIVATION_EMAIL + "/" + token);
-        mailService.sendMail(new NotificationEmail("Hãy kích hoạt tài khoản của bạn", userEntity.getEmail(), message));
+        mailService.sendMailSignUp(new NotificationEmail("Hãy kích hoạt tài khoản của bạn", userEntity.getEmail(), message));
     }
 
     private String generateTokenUser(UserEntity userEntity) {
@@ -99,6 +101,7 @@ public class AuthService {
         userRepository.save(userEntity);
     }
 
+    @Transactional
     public JwtLoginResponseDTO login(LoginRequestDTO loginRequestDTO) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequestDTO.getUsername(),
@@ -113,5 +116,13 @@ public class AuthService {
                                         , userDetails.getUsername()
                                             , userDetails.getEmail()
                                             , roles);
+    }
+
+    @Transactional(readOnly = true)
+    public UserEntity getCurrentUser() {
+//        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDetailsImpl principal = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userRepository.findByUsername(principal.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("Username not found - " + principal.getUsername()));
     }
 }

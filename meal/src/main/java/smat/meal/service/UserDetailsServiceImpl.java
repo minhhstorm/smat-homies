@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import smat.meal.entity.UserEntity;
 import smat.meal.repository.UserRepository;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -18,6 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private final UserRepository userRepository;
 
+    @Transactional
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<UserEntity> userOptional = userRepository.findByUsername(username);

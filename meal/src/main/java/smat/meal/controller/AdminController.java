@@ -8,12 +8,15 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import smat.meal.dto.AddDishRequestDTO;
 import smat.meal.dto.AddIngredientRequestDTO;
+import smat.meal.dto.ParticipantDTO;
 import smat.meal.entity.DishEntity;
 import smat.meal.entity.IngredientEntity;
+import smat.meal.entity.ParticipantEntity;
 import smat.meal.repository.DishRepository;
 import smat.meal.repository.IngredientRepository;
 import smat.meal.service.AdminService;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -28,6 +31,7 @@ public class AdminController {
     @Autowired
     private final IngredientRepository ingredientRepository;
 
+    // thêm nguyên liệu mới
     @PostMapping("/add-ingredient")
     public ResponseEntity<String> addIngredient(@Validated @RequestBody AddIngredientRequestDTO addIngredientRequestDTO) {
         if (ingredientRepository.existsByName(addIngredientRequestDTO.getName())) {
@@ -37,6 +41,7 @@ public class AdminController {
         return new ResponseEntity<>("Thêm nguyên liệu thành công", HttpStatus.CREATED);
     }
 
+    //Thêm món ăn mới
     @PostMapping("/add-dish")
     public ResponseEntity<String> addDish(@Validated @RequestBody AddDishRequestDTO addDishRequestDTO) {
         if (dishRepository.existsByName(addDishRequestDTO.getName())) {
@@ -51,13 +56,26 @@ public class AdminController {
         return new ResponseEntity<>(adminService.getAllIngredient(), HttpStatus.OK);
     }
 
-    @GetMapping("/get-dish")
-    public ResponseEntity<List<DishEntity>> getAllDish() {
-        return new ResponseEntity<>(adminService.getAllDish(), HttpStatus.OK);
+    @PostMapping("/participant")
+    public ResponseEntity<String> registerMeal(@RequestBody ParticipantDTO participantDTO) {
+        LocalTime time = LocalTime.now();
+        LocalTime timeMock = LocalTime.of(17,30, 0);
+        int compare = time.compareTo(timeMock);
+        if (compare > 0) {
+            return new ResponseEntity<>("Đã quá giờ báo cơm",HttpStatus.BAD_REQUEST);
+        }
+        adminService.registerMeal(participantDTO);
+        return new ResponseEntity<>("Đăng kí ăn thành công",HttpStatus.OK);
     }
 
-    @GetMapping("/get-meal")
-    public ResponseEntity<List<DishEntity>> getMeal() {
-            return new ResponseEntity<>(adminService.getMeal(), HttpStatus.OK);
+    @GetMapping("/show-participant")
+    public ResponseEntity<List<ParticipantEntity>> showParticipant() {
+        return new ResponseEntity<>(adminService.showParticipant(), HttpStatus.OK);
     }
+
+    @GetMapping("/get-list-ingredient-market")
+    public ResponseEntity<List<IngredientEntity>> getListIngredientMarket(List<DishEntity> dishEntities) {
+        return new ResponseEntity<>(adminService.getListIngredientMarket(dishEntities), HttpStatus.OK);
+    }
+
 }

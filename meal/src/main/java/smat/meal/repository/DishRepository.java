@@ -15,7 +15,7 @@ public interface DishRepository extends JpaRepository<DishEntity, Long> {
     Boolean existsByName(String name);
     List<DishEntity> findAll();
 
-    @Query(value = "SELECT * FROM dish d where d.type = ?1 ORDER BY ?2 LIMIT 1", nativeQuery=true)
-    DishEntity findByType(int type, String ran);
+    @Query(value = "SELECT * FROM dish d where d.type = ?1 ORDER BY rand() LIMIT 1", nativeQuery=true)
+    DishEntity findByType(int type);
 
 }

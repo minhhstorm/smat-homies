@@ -19,18 +19,37 @@ public class MailService {
     private final JavaMailSender mailSender;
     private final MailContentBuilder mailContentBuilder;
 
-    void sendMail(NotificationEmail notificationEmail) {
+    void sendMailSignUp(NotificationEmail notificationEmail) {
         MimeMessagePreparator messagePreparator = mimeMessage -> {
             MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
             messageHelper.setFrom("anhpdn1@gmail.com");
             messageHelper.setTo(notificationEmail.getRecipient());
             messageHelper.setSubject(notificationEmail.getSubject());
-            messageHelper.setText(mailContentBuilder.build(notificationEmail.getBody()));
+        //    messageHelper.setText(mailContentBuilder.build(notificationEmail.getBody()));
+            messageHelper.setText(notificationEmail.getBody());
         };
 
         try {
             mailSender.send(messagePreparator);
             log.info("Activation email sent!!");
+        } catch (MailException exception) {
+            throw new SmatException("Exception occurred when sending mail to " + notificationEmail.getRecipient(), exception);
+        }
+    }
+
+    public void sendMailForMeal(NotificationEmail notificationEmail) {
+        MimeMessagePreparator message1Preparator = mimeMessage -> {
+            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
+            messageHelper.setFrom("anhpdn1@gmail.com");
+            messageHelper.setTo(notificationEmail.getRecipient());
+            messageHelper.setSubject(notificationEmail.getSubject());
+            //    messageHelper.setText(mailContentBuilder.build(notificationEmail.getBody()));
+            messageHelper.setText(notificationEmail.getBody());
+        };
+
+        try {
+            mailSender.send(message1Preparator);
+            log.info("Sent!!");
         } catch (MailException exception) {
             throw new SmatException("Exception occurred when sending mail to " + notificationEmail.getRecipient(), exception);
         }

@@ -52,12 +52,12 @@ public class JwtProvider {
 	}
 
 	public String getUserNameFromJwtToken(String token) {
-		return  Jwts.parser().setSigningKey(getPrivateKey()).parseClaimsJwt(token).getBody().getSubject();
+		return  Jwts.parser().setSigningKey(getPrivateKey()).parseClaimsJws(token).getBody().getSubject();
 	}
 
 	public boolean validateJwtToken(String token) {
 		try {
-			Jwts.parser().setSigningKey(getPrivateKey()).parseClaimsJwt(token);
+			Jwts.parser().setSigningKey(getPrivateKey()).parseClaimsJws(token);
 			return true;
 		} catch (SignatureException | ExpiredJwtException | MalformedJwtException | UnsupportedJwtException | IllegalArgumentException exception) {
 			logger.error(exception.getMessage());
